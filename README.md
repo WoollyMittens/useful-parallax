@@ -37,7 +37,7 @@ var parallax = new useful.parallax(
 	foregrounds,
 	backgrounds,
 	{
-		'displacement' : -0.25,
+		'displacement' : -25,
 		'offset' : 0,
 		'exponential' : 1,
 		'treshold' : 100
@@ -52,9 +52,9 @@ parallax.start();
 
 **backgrounds : {DOM Elements}** - Optional list of elements that will be translated in a parallax manner.
 
-**displacement : {float}** - The maximum amount of translation to apply during parallax motions as a %/100.
+**displacement : {float}** - The maximum amount of translation to apply during parallax motions as a %.
 
-**offset : {float}** - A small offset to fine-tune the parallax motion as a %/100.
+**offset : {float}** - A small offset to fine-tune the parallax motion as a %.
 
 **exponential : {integer}** - Apply an exponential curve to the parallax motion.
 

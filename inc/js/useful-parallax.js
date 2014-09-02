@@ -297,7 +297,10 @@
 			this.start = function () {};
 		};
 		this.update = function () {
-			var objectPos, objectSize, relativePosition, className, replace = new RegExp(' off-scroller| on-scroller|off-scroller|on-scroller', 'i');
+			var objectPos, objectSize, relativePosition, className,
+				replace = new RegExp(' off-stage| on-stage|off-stage|on-stage', 'i'),
+				relativeOffset = this.cfg.offset / 100,
+				relativeDisplacement = this.cfg.displacement / 100;
 			// get the scroll position
 			var scrollSize = useful.positions.window(this.scroller);
 			var scrollPos = useful.positions.document(this.scroller);
@@ -316,15 +319,15 @@
 							relativePosition = (objectPos.y - scrollPos.y + objectSize.y) / (scrollSize.y + objectSize.y);
 							relativePosition = Math.min(Math.max(relativePosition, 0), 1);
 							relativePosition = Math.pow((relativePosition - 0.5) * 2, this.cfg.exponential);
-							relativePosition = relativePosition * this.cfg.displacement + this.cfg.offset;
+							relativePosition = relativePosition * relativeDisplacement + relativeOffset;
 							this.backgrounds[a].style.transform = 'translateY(' + (relativePosition * 100) + '%)';
 							this.backgrounds[a].style.webkitTransform = 'translateY(' + (relativePosition * 100) + '%)';
 						}
 						// mark its visibility
-						this.foregrounds[a].className = className.replace(replace, '') + ' on-scroller';
+						this.foregrounds[a].className = className.replace(replace, '') + ' on-stage';
 					} else {
 						// mark the object is outside the viewport
-						this.foregrounds[a].className = className.replace(replace, '') + ' off-scroller';
+						this.foregrounds[a].className = className.replace(replace, '') + ' off-stage';
 					}
 				}
 			}
