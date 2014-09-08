@@ -52,9 +52,9 @@ parallax.start();
 
 **backgrounds : {DOM Elements}** - Optional list of elements that will be translated in a parallax manner.
 
-**displacement : {float}** - The maximum amount of translation to apply during parallax motions as a %.
+**displacement : {float}** - The maximum amount of translation to apply during parallax motions in %.
 
-**offset : {float}** - A small offset to fine-tune the parallax motion as a %.
+**offset : {float}** - A small offset to fine-tune the parallax motion in %.
 
 **exponential : {integer}** - Apply an exponential curve to the parallax motion.
 
