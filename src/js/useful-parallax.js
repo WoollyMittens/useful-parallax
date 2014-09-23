@@ -6,13 +6,16 @@
 	This work is licensed under a Creative Commons Attribution 3.0 Unported License.
 */
 
-(function (useful) {
+// public object
+var useful = useful || {};
+
+(function(){
 
 	// invoke strict mode
 	"use strict";
 
 	// private functions
-	useful.parallax = function (scroller, foregrounds, backgrounds, cfg) {
+	useful.Parallax = function (scroller, foregrounds, backgrounds, cfg) {
 		// properties
 		this.scroller = scroller || window;
 		this.foregrounds = foregrounds;
@@ -80,4 +83,9 @@
 		this.start();
 	};
 
-}(window.useful = window.useful || {}));
+	// return as a require.js module
+	if (typeof module !== 'undefined') {
+		exports = module.exports = useful.Parallax;
+	}
+
+})();

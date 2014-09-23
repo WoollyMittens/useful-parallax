@@ -75,7 +75,9 @@
   right: 0;
   bottom: -48px;
   z-index: 1;
-  transform: translateY(0%);
+  -webkit-transform: translateY(0%);
+      -ms-transform: translateY(0%);
+          transform: translateY(0%);
   background-position: 50% 50%;
 }
 /* line 49, ../../src/scss/useful-parallax.scss */
