@@ -64,6 +64,7 @@ var useful = useful || {};
 							relativePosition = relativePosition * relativeDisplacement + relativeOffset;
 							this.backgrounds[a].style.transform = 'translateY(' + (relativePosition * 100) + '%)';
 							this.backgrounds[a].style.webkitTransform = 'translateY(' + (relativePosition * 100) + '%)';
+							this.backgrounds[a].style.msTransform = 'translateY(' + (relativePosition * 100) + '%)';
 						}
 						// mark its visibility
 						this.foregrounds[a].className = className.replace(replace, '') + ' on-stage';

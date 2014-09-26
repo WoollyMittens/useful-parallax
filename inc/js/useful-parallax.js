@@ -368,7 +368,7 @@ var useful = useful || {};
 			// if a parent was given
 			if (parent) {
 				// retrieve the position of the parent
-				var offsets = positions.object(parent);
+				var offsets = this.object(parent);
 				// adjust the coordinates to fit the parent
 				position.x -= offsets.x;
 				position.y -= offsets.y;
@@ -452,6 +452,7 @@ var useful = useful || {};
 							relativePosition = relativePosition * relativeDisplacement + relativeOffset;
 							this.backgrounds[a].style.transform = 'translateY(' + (relativePosition * 100) + '%)';
 							this.backgrounds[a].style.webkitTransform = 'translateY(' + (relativePosition * 100) + '%)';
+							this.backgrounds[a].style.msTransform = 'translateY(' + (relativePosition * 100) + '%)';
 						}
 						// mark its visibility
 						this.foregrounds[a].className = className.replace(replace, '') + ' on-stage';
