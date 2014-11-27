@@ -75,17 +75,15 @@
 				<script>
 				//<!--
 					// create a new instance of the script
-					var parallax = new useful.Parallax(
-						document.querySelector('.parallax-col'),
-						document.querySelectorAll('.parallax-col .parallax-row'),
-						document.querySelectorAll('.parallax-col .parallax-row .parallax-bg'),
-						{
-							'displacement' : -25,
-							'offset' : 0,
-							'exponential' : 1,
-							'treshold' : 100
-						}
-					);
+					var parallax = new useful.Parallax().init({
+						'scroller' : document.querySelector('.parallax-col'),
+						'foregrounds' : document.querySelectorAll('.parallax-col .parallax-row'),
+						'backgrounds' : document.querySelectorAll('.parallax-col .parallax-row .parallax-bg'),
+						'displacement' : -25,
+						'offset' : 0,
+						'exponential' : 1,
+						'treshold' : 100
+					});
 				//-->
 				</script>
 				<!-- Cut above this -->

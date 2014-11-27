@@ -29,21 +29,15 @@ To enable the use of HTML5 tags in Internet Explorer 8 and lower, include *html5
 ## How to start the script
 
 ```javascript
-var scroller  = document.querySelector('.parallax-col');
-var foregrounds = document.querySelectorAll('.parallax-col .parallax-row');
-var backgrounds = document.querySelectorAll('.parallax-col .parallax-row .parallax-bg');
-var parallax = new useful.parallax(
-	scroller,
-	foregrounds,
-	backgrounds,
-	{
-		'displacement' : -25,
-		'offset' : 0,
-		'exponential' : 1,
-		'treshold' : 100
-	}
-);
-parallax.start();
+var parallax = new useful.Parallax().init({
+	'scroller' : document.querySelector('.parallax-col'),
+	'foregrounds' : document.querySelectorAll('.parallax-col .parallax-row'),
+	'backgrounds' : document.querySelectorAll('.parallax-col .parallax-row .parallax-bg'),
+	'displacement' : -25,
+	'offset' : 0,
+	'exponential' : 1,
+	'treshold' : 100
+});
 ```
 
 **scroller : {DOM Element}** - This is the page element with the scrollbar. By default this is "window".
