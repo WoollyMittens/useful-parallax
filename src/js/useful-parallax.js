@@ -6,40 +6,45 @@
 	This work is licensed under a Creative Commons Attribution 3.0 Unported License.
 */
 
-// create the constructor if needed
+// create the global object if needed
 var useful = useful || {};
-useful.Parallax = useful.Parallax || function () {};
 
-// extend the constructor
-useful.Parallax.prototype.init = function (cfg) {
-	// properties
+// extend the global object
+useful.Parallax = function () {
+
+	// PROPERTIES
+
 	"use strict";
-	this.cfg = cfg;
-	this.scroller = cfg.scroller || window;
-	this.foregrounds = cfg.foregrounds;
-	this.backgrounds = cfg.backgrounds;
-	// methods
-	this.start = function () {
+
+	// METHODS
+
+	this.init = function (config) {
+		// store the configuration
+		this.config = config;
+		this.scroller = config.scroller || window;
+		this.foregrounds = config.foregrounds;
+		this.backgrounds = config.backgrounds;
 		// set any default values if there wasn't one
-		this.cfg.vertical = this.cfg.vertical || 1;
-		this.cfg.offset = this.cfg.offset || 0;
-		this.cfg.exponential = this.cfg.exponential || 1;
-		this.cfg.treshhold = this.cfg.treshhold || 100;
-		this.cfg.parallax = this.cfg.parallax || false;
+		this.config.vertical = this.config.vertical || 1;
+		this.config.offset = this.config.offset || 0;
+		this.config.exponential = this.config.exponential || 1;
+		this.config.treshhold = this.config.treshhold || 100;
+		this.config.parallax = this.config.parallax || false;
 		// set the default repeat behaviour
-		this.cfg.always = this.cfg.always || false;
+		this.config.always = this.config.always || false;
 		// set the scrolling event handler
 		this.scroller.addEventListener('scroll', this.onUpdate(), true);
 		// perform the first redraw
 		this.update();
-		// disable the start function so it can't be started twice
-		this.start = function () {};
+		// return the object
+		return this;
 	};
+
 	this.update = function () {
 		var objectPos, objectSize, relativePosition, className,
 			replace = new RegExp(' off-stage| on-stage|off-stage|on-stage', 'i'),
-			relativeOffset = this.cfg.offset / 100,
-			relativeDisplacement = this.cfg.displacement / 100;
+			relativeOffset = this.config.offset / 100,
+			relativeDisplacement = this.config.displacement / 100;
 		// get the scroll position
 		var scrollSize = useful.positions.window(this.scroller);
 		var scrollPos = useful.positions.document(this.scroller);
@@ -52,12 +57,12 @@ useful.Parallax.prototype.init = function (cfg) {
 				objectPos = { x : this.foregrounds[a].offsetLeft, y : this.foregrounds[a].offsetTop };
 				objectSize = { x : this.foregrounds[a].offsetWidth, y : this.foregrounds[a].offsetHeight };
 				// if the object is in the viewport
-				if (objectPos.y + objectSize.y >= scrollPos.y - this.cfg.offset && objectPos.y < scrollPos.y + this.cfg.treshold + scrollSize.y) {
+				if (objectPos.y + objectSize.y >= scrollPos.y - this.config.offset && objectPos.y < scrollPos.y + this.config.treshold + scrollSize.y) {
 					// if required position the parallax
 					if (b === c) {
 						relativePosition = (objectPos.y - scrollPos.y + objectSize.y) / (scrollSize.y + objectSize.y);
 						relativePosition = Math.min(Math.max(relativePosition, 0), 1);
-						relativePosition = Math.pow((relativePosition - 0.5) * 2, this.cfg.exponential);
+						relativePosition = Math.pow((relativePosition - 0.5) * 2, this.config.exponential);
 						relativePosition = relativePosition * relativeDisplacement + relativeOffset;
 						this.backgrounds[a].style.transform = 'translateY(' + (relativePosition * 100) + '%)';
 						this.backgrounds[a].style.webkitTransform = 'translateY(' + (relativePosition * 100) + '%)';
@@ -72,14 +77,14 @@ useful.Parallax.prototype.init = function (cfg) {
 			}
 		}
 	};
-	// events
+
+	// EVENTS
+
 	this.onUpdate = function () {
 		var _this = this;
 		return function () { _this.update(); };
 	};
-	// go
-	this.start();
-	return this;
+	
 };
 
 // return as a require.js module
