@@ -1,0 +1,92 @@
+.parallax-col {
+	background-color: #000;
+	border: solid 1px #000;
+	height: 288px;
+	margin: 0;
+	overflow-x: hidden;
+	overflow-y: auto;
+	padding: 0;
+	position: relative;
+
+	.parallax-row {
+		border-bottom: solid 1px #000;
+		list-style-type: none;
+		margin: 0;
+		padding: 0;
+		height: 96px;
+		overflow: hidden;
+		position: relative;
+
+		.parallax-fg {
+			font-size: 2rem;
+			box-shadow: inset 0 0 16px #000;
+			color: #fff;
+			font-weight: bold;
+			line-height: 96px;
+			text-align: center;
+			text-shadow: 0 0 3px #000;
+			position: absolute;
+			left: 0;
+			top: 0;
+			right: 0;
+			bottom: 0;
+			z-index: 2;
+		}
+
+		.parallax-bg {
+			height: 192px;
+			position: absolute;
+			left: 0;
+			top: -48px;
+			right: 0;
+			bottom: -48px;
+			z-index: 1;
+			transform: translateY(0%);
+			background-position: 50% 50%;
+
+			&.bg-0 {
+				background-image: url("../img/figure_0a.jpg");
+			}
+
+			&.bg-1 {
+				background-image: url("../img/figure_1a.jpg");
+			}
+
+			&.bg-2 {
+				background-image: url("../img/figure_2a.jpg");
+			}
+
+			&.bg-3 {
+				background-image: url("../img/figure_3a.jpg");
+			}
+
+			&.bg-4 {
+				background-image: url("../img/figure_4a.jpg");
+			}
+
+			&.bg-5 {
+				background-image: url("../img/figure_5a.jpg");
+			}
+
+			&.bg-6 {
+				background-image: url("../img/figure_6a.jpg");
+			}
+
+			&.bg-7 {
+				background-image: url("../img/figure_7a.jpg");
+			}
+
+			&.bg-8 {
+				background-image: url("../img/figure_8a.jpg");
+			}
+
+			&.bg-9 {
+				background-image: url("../img/figure_9a.jpg");
+			}
+		}
+
+		&.off-stage .parallax-bg {
+			background-image: none !important;
+		}
+	}
+}

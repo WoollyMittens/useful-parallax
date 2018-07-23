@@ -1,44 +1,34 @@
 /*
 	Source:
-	van Creij, Maurice (2014). "useful.parallax.js: Position and load backgrounds based on screen position.", version 20141127, http://www.woollymittens.nl/.
+	van Creij, Maurice (2018). "parallax.js: Position and load backgrounds based on screen position.", http://www.woollymittens.nl/.
 
 	License:
 	This work is licensed under a Creative Commons Attribution 3.0 Unported License.
 */
 
-// create the global object if needed
-var useful = useful || {};
-
-// extend the global object
-useful.Parallax = function () {
+// establish the class
+var Parallax = function (config) {
 
 	// PROPERTIES
 
-	"use strict";
+	this.scroller = config.scroller || window;
+	this.foregrounds = config.foregrounds;
+	this.backgrounds = config.backgrounds;
+
+	this.config = {
+		'vertical': 1,
+		'offset': 0,
+		'exponential': 1,
+		'treshhold': 100,
+		'parallax': false,
+		'always': false
+	};
+
+	for (var key in config) {
+		this.config[key] = config[key];
+	}
 
 	// METHODS
-
-	this.init = function (config) {
-		// store the configuration
-		this.config = config;
-		this.scroller = config.scroller || window;
-		this.foregrounds = config.foregrounds;
-		this.backgrounds = config.backgrounds;
-		// set any default values if there wasn't one
-		this.config.vertical = this.config.vertical || 1;
-		this.config.offset = this.config.offset || 0;
-		this.config.exponential = this.config.exponential || 1;
-		this.config.treshhold = this.config.treshhold || 100;
-		this.config.parallax = this.config.parallax || false;
-		// set the default repeat behaviour
-		this.config.always = this.config.always || false;
-		// set the scrolling event handler
-		this.scroller.addEventListener('scroll', this.onUpdate(), true);
-		// perform the first redraw
-		this.update();
-		// return the object
-		return this;
-	};
 
 	this.update = function () {
 		var objectPos, objectSize, relativePosition, className,
@@ -46,8 +36,8 @@ useful.Parallax = function () {
 			relativeOffset = this.config.offset / 100,
 			relativeDisplacement = this.config.displacement / 100;
 		// get the scroll position
-		var scrollSize = useful.positions.window(this.scroller);
-		var scrollPos = useful.positions.document(this.scroller);
+		var scrollSize = positions.window(this.scroller);
+		var scrollPos = positions.document(this.scroller);
 		// if we can measure the scroller
 		if (scrollSize.y !== 0) {
 			// for every watched element
@@ -80,14 +70,12 @@ useful.Parallax = function () {
 
 	// EVENTS
 
-	this.onUpdate = function () {
-		var _this = this;
-		return function () { _this.update(); };
-	};
-	
+	this.scroller.addEventListener('scroll', this.update.bind(this), true);
+	this.update();
+
 };
 
 // return as a require.js module
 if (typeof module !== 'undefined') {
-	exports = module.exports = useful.Parallax;
+	exports = module.exports = Parallax;
 }

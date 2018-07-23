@@ -1,4 +1,4 @@
-# useful.parallax.js: Position and load backgrounds based on screen position.
+# parallax.js: Position and load backgrounds based on screen position.
 
 Defers the loading of backgrounds until they come into view. This lowers the time it takes for the initial page to load.
 
@@ -9,27 +9,19 @@ Try the <a href="http://www.woollymittens.nl/default.php?url=useful-parallax">de
 The stylesheet is best included in the header of the document.
 
 ```html
-<link rel="stylesheet" href="./css/useful-parallax.css"/>
+<link rel="stylesheet" href="./css/parallax.css"/>
 ```
 
 This include can be added to the header or placed inline before the script is invoked.
 
 ```html
-<script src="./js/useful-parallax.js"></script>
-```
-
-To enable the use of HTML5 tags in Internet Explorer 8 and lower, include *html5.js*.
-
-```html
-<!--[if lte IE 9]>
-	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-<![endif]-->
+<script src="./js/parallax.js"></script>
 ```
 
 ## How to start the script
 
 ```javascript
-var parallax = new useful.Parallax().init({
+var parallax = new Parallax({
 	'scroller' : document.querySelector('.parallax-col'),
 	'foregrounds' : document.querySelectorAll('.parallax-col .parallax-row'),
 	'backgrounds' : document.querySelectorAll('.parallax-col .parallax-row .parallax-bg'),
