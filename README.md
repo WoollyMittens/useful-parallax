@@ -9,13 +9,32 @@ Try the <a href="http://www.woollymittens.nl/default.php?url=useful-parallax">de
 The stylesheet is best included in the header of the document.
 
 ```html
-<link rel="stylesheet" href="./css/parallax.css"/>
+<link rel="stylesheet" href="css/parallax.css"/>
 ```
 
 This include can be added to the header or placed inline before the script is invoked.
 
 ```html
-<script src="./js/parallax.js"></script>
+<script src="lib/positions.js"></script>
+<script src="js/parallax.js"></script>
+```
+
+Or use [Require.js](https://requirejs.org/).
+
+```js
+requirejs([
+	'lib/positions.js',
+	'js/parallax.js'
+], function(positions, Parallax) {
+	...
+});
+```
+
+Or import into an MVC framework.
+
+```js
+var positions = require('lib/positions.js');
+var Parallax = require('js/parallax.js');
 ```
 
 ## How to start the script

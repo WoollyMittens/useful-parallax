@@ -76,5 +76,5 @@ var Parallax = function (config) {
 };
 
 // return as a require.js module
-if (typeof define != 'undefined') define(['parallax'], function () { return Parallax });
+if (typeof define != 'undefined') define([], function () { return Parallax });
 if (typeof module != 'undefined') module.exports = Parallax;
